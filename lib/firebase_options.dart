@@ -19,11 +19,11 @@ class DefaultFirebaseOptions {
 
   // TODO: Substitua pelos valores reais após `flutterfire configure`
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'YOUR_ANDROID_API_KEY',
-    appId: 'YOUR_ANDROID_APP_ID',
-    messagingSenderId: 'YOUR_SENDER_ID',
-    projectId: 'YOUR_PROJECT_ID',
-    storageBucket: 'YOUR_PROJECT_ID.appspot.com',
+    apiKey: 'AIzaSyCH5BWec0tls4dE9JsdXONJR2uxVGZTDok',
+    appId: '1:599934575252:android:1ed93acec48fc514d68a81',
+    messagingSenderId: '599934575252',
+    projectId: 'copa-do-mundo-d050b',
+    storageBucket: 'copa-do-mundo-d050b.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(

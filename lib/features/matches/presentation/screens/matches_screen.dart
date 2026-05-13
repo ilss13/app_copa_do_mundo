@@ -10,6 +10,7 @@ import '../../../../shared/widgets/match_card_widget.dart';
 import '../../../../shared/widgets/shimmer_box.dart';
 import '../cubits/matches_cubit.dart';
 import '../cubits/matches_state.dart';
+import '../widgets/bracket_tab.dart';
 
 class MatchesScreen extends StatelessWidget {
   const MatchesScreen({super.key});
@@ -53,38 +54,46 @@ class _MatchesTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final groups = state.groups;
+    final grouped = state.grouped;
+    final groupKeys =
+        state.groups.where((g) => g.startsWith('Group ')).toList();
+    final hasKnockout = state.groups.any((g) => !g.startsWith('Group '));
 
     return DefaultTabController(
-      length: groups.length,
+      length: groupKeys.length + (hasKnockout ? 1 : 0),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Jogos'),
           bottom: TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.start,
-            tabs: groups
-                .map((g) => Tab(text: _shortGroupName(g)))
-                .toList(),
+            tabs: [
+              ...groupKeys.map((g) => Tab(text: _shortGroupName(g))),
+              if (hasKnockout) const Tab(text: 'Chaveamento'),
+            ],
           ),
         ),
         body: TabBarView(
-          children: groups.map((group) {
-            final matches = state.grouped[group]!;
-            return RefreshIndicator(
-              color: AppColors.secondary,
-              backgroundColor: AppColors.surface,
-              onRefresh: () => context.read<MatchesCubit>().refresh(),
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                itemCount: matches.length,
-                itemBuilder: (_, i) => MatchCardWidget(
-                  match: matches[i],
-                  onTap: () => context.push(AppRoutes.matchDetailPath(matches[i].id)),
+          children: [
+            ...groupKeys.map((group) {
+              final matches = grouped[group]!;
+              return RefreshIndicator(
+                color: AppColors.secondary,
+                backgroundColor: AppColors.surface,
+                onRefresh: () => context.read<MatchesCubit>().refresh(),
+                child: ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  itemCount: matches.length,
+                  itemBuilder: (_, i) => MatchCardWidget(
+                    match: matches[i],
+                    onTap: () =>
+                        context.push(AppRoutes.matchDetailPath(matches[i].id)),
+                  ),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            }),
+            if (hasKnockout) BracketTab(grouped: grouped),
+          ],
         ),
       ),
     );

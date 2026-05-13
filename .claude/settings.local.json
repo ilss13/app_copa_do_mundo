@@ -5,7 +5,9 @@
       "Bash(dart analyze *)",
       "Bash(Get-ChildItem -Recurse test/)",
       "Bash(Get-ChildItem test/ -ErrorAction SilentlyContinue)",
-      "Bash(flutter test *)"
+      "Bash(flutter test *)",
+      "Bash(xargs grep -l \"Round of\\\\|knockout\\\\|knockout stage\")",
+      "Bash(xargs grep -i \"round of\\\\|quarter\\\\|semi\\\\|final\")"
     ]
   }
 }
