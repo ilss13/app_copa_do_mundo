@@ -94,7 +94,7 @@ class _LoadedView extends StatelessWidget {
                   children: [
                     EventsListWidget(events: detail.events, match: match),
                     LineupsTab(homeLineup: detail.homeLineup, awayLineup: detail.awayLineup),
-                    StatisticsTab(statistics: detail.statistics, match: match),
+                    StatisticsTab(statistics: detail.statistics, match: match, isPremium: isPremium),
                     H2HTab(
                       h2hMatches: detail.h2hMatches,
                       isPremium: isPremium,

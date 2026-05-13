@@ -5,6 +5,7 @@ import '../../../../core/theme/app_text_styles.dart';
 import '../../../../shared/models/match.dart';
 import '../../../../shared/models/match_statistic.dart';
 import '../../../../shared/widgets/team_logo_widget.dart';
+import 'premium_lock_widget.dart';
 import 'stat_bar.dart';
 
 class StatisticsTab extends StatelessWidget {
@@ -12,13 +13,17 @@ class StatisticsTab extends StatelessWidget {
     super.key,
     required this.statistics,
     required this.match,
+    required this.isPremium,
   });
 
   final List<MatchStatistic> statistics;
   final Match match;
+  final bool isPremium;
 
   @override
   Widget build(BuildContext context) {
+    if (!isPremium) return const PremiumLockWidget();
+
     if (statistics.isEmpty) {
       return Center(
         child: Text(
