@@ -1,0 +1,26 @@
+Crie um plano para desenvolver um app sobre a copa do mundo. O app deve ter uma página inicial com a listagem de jogos do dia, deve ter uma página de jogos com a listagem de todos os jogos, divididos por grupos, uma página com a tabela também dividida por grupos. Ao clicar em cada confronto, devemos exibir o jogo em tempo real, escalação, estatísticas e confrontos anteriores.
+
+Tecnologia:
+
+App feito em flutter, usando as melhores práticas, código limpo e organizado;
+Integração com Firebase e uso de suas principais ferramentas se necessário;
+Integrar assinatura com Google
+
+Pontos gerais:
+
+Todas as chamadas pra api deve ter um loading;
+Criar um cache para não gerar muitas chamadas para a api;
+Preparar o app para mostrar um anúncio intersitial do google admob, a cada 5 interações de troca de página, o valor deve ser configurado via Remote Config.
+Preparar o app para mostrar um anúncio banner do admob em todas as telas;
+Página para vender assinatura premium;
+A assinatura remove todos os anúncios; 
+Para ver a tela de confrontos deve ser assinante;
+
+Design:
+
+Design impactante, focado na copa do mundo;
+Elegante e focado no conteúdo;
+Use ícones para enriquecer o visual;
+Use cores para diferenciar blocos de conteúdo, sombras, linhas, etc;
+
+ A API que você vai se conectar tem todas as informações necessárias [API Football](https://www.api-football.com/documentation-v3). Faça um arquivo [plan.md](http://plan.md) e [claude.md](http://claude.md) do projeto.

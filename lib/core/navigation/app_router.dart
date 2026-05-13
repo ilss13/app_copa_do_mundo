@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/home/presentation/screens/home_screen.dart';
-import '../../features/matches/presentation/screens/matches_screen.dart';
-import '../../features/standings/presentation/screens/standings_screen.dart';
 import '../../features/match_detail/presentation/screens/match_detail_screen.dart';
-import '../../features/subscription/presentation/screens/subscription_screen.dart';
+import '../../features/matches/presentation/screens/matches_screen.dart';
 import '../../features/splash/presentation/screens/splash_screen.dart';
+import '../../features/standings/presentation/screens/standings_screen.dart';
+import '../../features/subscription/presentation/screens/subscription_screen.dart';
+import '../ads/interstitial_ad_controller.dart';
 import 'app_routes.dart';
 import 'main_scaffold.dart';
 
 final appRouter = GoRouter(
   initialLocation: AppRoutes.splash,
+  observers: [_AdNavigatorObserver()],
   routes: [
     GoRoute(
       path: AppRoutes.splash,
@@ -56,4 +59,24 @@ CustomTransitionPage<void> _fade(GoRouterState state, Widget child) {
     transitionsBuilder: (_, animation, _, child) =>
         FadeTransition(opacity: animation, child: child),
   );
+}
+
+class _AdNavigatorObserver extends NavigatorObserver {
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    if (previousRoute != null) _trackNavigation();
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    _trackNavigation();
+  }
+
+  void _trackNavigation() {
+    try {
+      GetIt.instance<InterstitialAdController>().onNavigated();
+    } catch (_) {
+      // DI may not be ready during initial navigation
+    }
+  }
 }

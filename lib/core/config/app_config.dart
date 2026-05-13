@@ -1,6 +1,6 @@
 abstract final class AppConfig {
   static const apiBaseUrl = 'https://v3.football.api-sports.io';
-  static const apiKey = String.fromEnvironment('API_FOOTBALL_KEY', defaultValue: '');
+  static const apiKey = String.fromEnvironment('API_FOOTBALL_KEY', defaultValue: 'b1e7014089684fc36139b016127d9957');
 
   // World Cup 2026 league ID on API Football
   static const worldCupLeagueId = 1;
@@ -30,4 +30,11 @@ abstract final class AppConfig {
   static const testBannerAdUnitIos = 'ca-app-pub-3940256099942544/2934735716';
   static const testInterstitialAdUnitAndroid = 'ca-app-pub-3940256099942544/1033173712';
   static const testInterstitialAdUnitIos = 'ca-app-pub-3940256099942544/4411468910';
+
+  // In-App Purchase product IDs (Google Play / App Store)
+  static const productMonthlyId = 'premium_monthly';
+  static const productYearlyId = 'premium_yearly';
+
+  // Firestore
+  static const firestoreUsersCollection = 'users';
 }

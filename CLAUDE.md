@@ -95,6 +95,7 @@ flutter build appbundle --release
 - Chave da API armazenada via `--dart-define=API_FOOTBALL_KEY=xxx` ou `firebase remote config`
 - Liga Copa do Mundo: `league=1` (verificar ID atual na documentação)
 - Nunca expor a chave no código-fonte
+- **Package ID:** `com.copa.mundo.world.cup` (Android e iOS)
 
 ---
 

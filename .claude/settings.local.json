@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(flutter --version)"
+      "Bash(flutter --version)",
+      "Bash(dart analyze *)",
+      "Bash(Get-ChildItem -Recurse test/)",
+      "Bash(Get-ChildItem test/ -ErrorAction SilentlyContinue)",
+      "Bash(flutter test *)"
     ]
   }
 }

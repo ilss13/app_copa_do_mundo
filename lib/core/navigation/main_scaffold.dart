@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../shared/widgets/banner_ad_widget.dart';
+import '../ads/interstitial_ad_controller.dart';
 import '../theme/app_colors.dart';
 import 'app_routes.dart';
 
@@ -14,7 +17,12 @@ class MainScaffold extends StatelessWidget {
     final location = GoRouterState.of(context).uri.toString();
 
     return Scaffold(
-      body: child,
+      body: Column(
+        children: [
+          Expanded(child: child),
+          const BannerAdWidget(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indexFromRoute(location),
         onTap: (i) => _onNavTap(context, i),
@@ -51,5 +59,8 @@ class MainScaffold extends StatelessWidget {
   void _onNavTap(BuildContext context, int index) {
     final routes = [AppRoutes.home, AppRoutes.matches, AppRoutes.standings];
     context.go(routes[index]);
+    try {
+      GetIt.instance<InterstitialAdController>().onNavigated();
+    } catch (_) {}
   }
 }
